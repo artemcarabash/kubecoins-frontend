@@ -1,1 +1,22 @@
+server:
+  servlet:
+    context-path: /frontend-carabasa
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "info, health, prometheus"
+  metrics:
+    tags:
+      application: frontend-carabasa
+service:
+  routingKey: "carabasa-kubecoin"
+spring:
+  rabbitmq:
+    port: 5672
+    username: cnc
+    password: cnc
+    virtual-host: /cnc
+    ssl:
+      enabled: false
 

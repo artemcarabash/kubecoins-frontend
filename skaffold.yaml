@@ -1,0 +1,17 @@
+apiVersion: skaffold/v2beta8
+kind: Config
+metadata:
+  name: frontend-carabasa
+build:
+  artifacts:
+    - image: docker.informatik.hs-furtwangen.de/cnc-carabasa/frontend
+      jib:
+        args:
+          - -Dmaven.test.skip=true
+deploy:
+  helm:
+    releases:
+      - name: frontend-carabasa
+        chartPath: src/charts/frontend
+        artifactOverrides:
+          image: docker.informatik.hs-furtwangen.de/cnc-carabasa/frontend

@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}-{{.Values.author }}
+  labels:
+    app: {{ .Values.name }}
+    author: {{.Values.author }}
+spec:
+  replicas: {{.Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+      author: {{ .Values.author }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+        author: {{.Values.author }}
+    spec:
+      containers:
+        - name: {{ .Values.name }}-{{.Values.author }}
+          image: {{ .Values.image }}
+          env:
+            - name: SPRING_RABBITMQ_HOST
+              value: amq-rabbitmq-ha.devtools
+          resources:
+            limits:
+              memory: 256Mi
+            requests:
+              memory: 32Mi
+          livenessProbe:
+            initialDelaySeconds: 15
+            httpGet:
+              path: /{{ .Values.name }}-{{ .Values.author }}/actuator/health/liveness
+              port: 8080
+          readinessProbe:
+            initialDelaySeconds: 15
+            httpGet:
+              path: /{{ .Values.name }}-{{ .Values.author }}/actuator/health/readiness
+              port: 8080

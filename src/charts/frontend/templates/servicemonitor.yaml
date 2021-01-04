@@ -1,0 +1,16 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: frontendmonitor-{{ .Values.author }}
+  labels:
+    app: {{ .Values.name }}
+    author: {{ .Values.author }}
+spec:
+  endpoints:
+    - interval: 30s
+      path: /{{ .Values.name }}-{{ .Values.author }}/actuator/prometheus
+      port: web
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+      author: {{ .Values.author }}

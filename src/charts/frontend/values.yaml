@@ -1,0 +1,4 @@
+replicaCount: 1
+image: docker.informatik.hs-furtwangen.de/cnc-carabasa/frontend
+author: carabasa
+name: frontend

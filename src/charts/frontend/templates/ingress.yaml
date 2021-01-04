@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{.Values.name}}-{{.Values.author}}
+  labels:
+    app: {{.Values.name}}
+    author: {{.Values.author}}
+spec:
+  rules:
+    - host: kube.informatik.hs-furtwangen.de
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/frontend-carabasa"
+            backend:
+              service:
+                name: {{.Values.name}}-{{.Values.author}}
+                port:
+                  number: 80
