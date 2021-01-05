@@ -8,9 +8,9 @@ metadata:
 spec:
   endpoints:
     - interval: 30s
-      path: /{{ .Values.name }}-{{ .Values.author }}/actuator/prometheus
+      path: /frontend-{{ .Values.author }}/actuator/prometheus
       port: web
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: frontend
       author: {{ .Values.author }}

@@ -11,6 +11,8 @@ management:
       application: frontend-carabasa
 service:
   routingKey: "carabasa-kubecoin"
+  backends:
+    worker: "http://worker-carabasa/worker-carabasa"
 spring:
   rabbitmq:
     port: 5672

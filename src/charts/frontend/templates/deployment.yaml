@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}-{{.Values.author }}
+  name: frontend-{{.Values.author }}
   labels:
-    app: {{ .Values.name }}
+    app: frontend
     author: {{.Values.author }}
 spec:
   replicas: {{.Values.replicaCount }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: frontend
       author: {{ .Values.author }}
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: frontend
         author: {{.Values.author }}
     spec:
       containers:
-        - name: {{ .Values.name }}-{{.Values.author }}
+        - name: frontend-{{.Values.author }}
           image: {{ .Values.image }}
           env:
             - name: SPRING_RABBITMQ_HOST
@@ -31,10 +31,10 @@ spec:
           livenessProbe:
             initialDelaySeconds: 15
             httpGet:
-              path: /{{ .Values.name }}-{{ .Values.author }}/actuator/health/liveness
+              path: /frontend-carabasa/actuator/health/liveness
               port: 8080
           readinessProbe:
             initialDelaySeconds: 15
             httpGet:
-              path: /{{ .Values.name }}-{{ .Values.author }}/actuator/health/readiness
+              path: /frontend-carabasa/actuator/health/readiness
               port: 8080
