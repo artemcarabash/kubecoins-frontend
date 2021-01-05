@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>KubeCoins</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>KubeCoins Carabas Artiom</h1>
+<button type="button" onclick="sendRequest('work10')">
+    Send 10 Messages
+</button>
+<button type="button" onclick="sendRequest('work100')">
+    Send 100 Messages
+</button>
+<button type="button" onclick="sendRequest('stats')">
+    Get Stats
+</button>
+
+<p id="response"></p>
+
+<script>
+    function sendRequest(request) {
+        var xmlhttp = new XMLHttpRequest();
+        var url = "https://kube.informatik.hs-furtwangen.de/frontend-carabasa/" + request;
+        xmlhttp.onload = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == "200") {
+                document.getElementById("response").innerHTML = this.responseText;
+            }
+        }
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+    }
+</script>
+</body>
+</html>
