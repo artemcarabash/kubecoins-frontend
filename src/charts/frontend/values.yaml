@@ -1,3 +1,4 @@
+# Enthält die Variablen die in anderen Manifestdateien eingesetzt werden können
 replicaCount: 1
 image: docker.informatik.hs-furtwangen.de/cnc-carabasa/frontend
 author: carabasa

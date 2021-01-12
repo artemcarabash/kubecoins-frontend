@@ -1,40 +1,51 @@
+# Manifestdatei für Deployment
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend-{{.Values.author }}
+  # Labels für Deployment um Ressourcen zu kennzeichen
   labels:
     app: frontend
     author: {{.Values.author }}
 spec:
+  # Anzahl von Pods die gestartet werden sollten
   replicas: {{.Values.replicaCount }}
   selector:
     matchLabels:
       app: frontend
       author: {{ .Values.author }}
+# So sollte ein Pod initialisiert werden wenn es wird von Deployment erstellt
   template:
     metadata:
       labels:
         app: frontend
         author: {{.Values.author }}
     spec:
+      # Welche Image sollte genutzt werden um ein Pod zu erstellen
       containers:
         - name: frontend-{{.Values.author }}
           image: {{ .Values.image }}
+          # Verbindung RabbitMQ zum Anwendung
           env:
             - name: SPRING_RABBITMQ_HOST
               value: amq-rabbitmq-ha.devtools
           resources:
+            # maximal erlaubten CPU und Memory Werte werden hier definiert
             limits:
               memory: 256Mi
             requests:
               memory: 32Mi
           livenessProbe:
+            #aufzurufende Seite um liveness Statuss zu überprüfen
             initialDelaySeconds: 15
             httpGet:
               path: /frontend-carabasa/actuator/health/liveness
+              #verwendende Container-Port
               port: 8080
           readinessProbe:
+            #aufzurufende Seite um readiness Statuss zu überprüfen
             initialDelaySeconds: 15
             httpGet:
               path: /frontend-carabasa/actuator/health/readiness
+              #verwendende Container-Port
               port: 8080

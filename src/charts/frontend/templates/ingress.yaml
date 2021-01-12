@@ -1,3 +1,5 @@
+# Ingress erlaubt die erstellte Pods auch von extern zugreifen, ohne Ingress sind Pods nur Cluster-intern ansprechbar
+# Ingress-Ressourcen verbinden einen Host und Path zu einem Service
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:

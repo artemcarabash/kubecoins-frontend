@@ -1,7 +1,9 @@
 server:
   servlet:
+    #Personalisierte URL Pfad damit die Anwendung unter unterschiedliche URL angesprochen werden kann
     context-path: /frontend-carabasa
 management:
+  # Prometheus Konfiguration damit die Anwendung Metriken genieriert und die über Webserver zur Verfügung stellt
   endpoints:
     web:
       exposure:
@@ -11,9 +13,11 @@ management:
       application: frontend-carabasa
 service:
   routingKey: "carabasa-kubecoin"
+  # Spring WebClient Endpoints
   backends:
     worker: "http://worker-carabasa/worker-carabasa"
 spring:
+  #RabbitMQ Konfiguration
   rabbitmq:
     port: 5672
     username: cnc

@@ -1,15 +1,20 @@
+#  Manifestdatei für Service
 apiVersion: v1
 kind: Service
 metadata:
+  # Service Name
   name: frontend-{{ .Values.author }}
+  # Labels für Service um Ressourcen zu kennzeichen
   labels:
     app: frontend
     author: {{ .Values.author }}
 spec:
+  # Spezifikationen für Port Weiterleitung
   ports:
     - name: web
       port: 80
       targetPort: 8080
+# So werden zugehörige Pods gefunden und zugewiesen
   selector:
     app: frontend
     author: {{ .Values.author }}

@@ -14,17 +14,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.reactive.function.client.WebClient;
 
+// Rest Schnittstelle unserer Anwendung und Haupt Funktionen
 @RestController
 @SpringBootApplication
 public class FrontendApplication {
+
 
     Counter requestCounter;
     private WebClient workerClient;
     private RabbitTemplate template;
     private DirectExchange direct;
     private String routingKey;
+    // Log Objekt um informative Log Nachrichten in Console auszugeben
     private static final Logger LOG = LoggerFactory.getLogger(FrontendApplication.class);
 
+    // Konstruktor
     public FrontendApplication(
             @Value("${service.backends.worker}") String workerBackend,
             @Value("${service.routingKey}") String routingKey,
@@ -44,12 +48,13 @@ public class FrontendApplication {
         SpringApplication.run(FrontendApplication.class, args);
     }
 
+    // Test Methode
     @RequestMapping("/home")
     public String home() {
         LOG.info("Called home() method");
         return "KubeCoin App. Carabas Artiom";
     }
-
+    // Methode die erstellt 10 Nachrichten
     @RequestMapping("/work10")
     public String work10() {
         LOG.info("sent 10 requests");
@@ -58,7 +63,7 @@ public class FrontendApplication {
         }
         return "Sent 10 messages!";
     }
-
+    // Methode die erstellt 100 Nachrichten
     @RequestMapping("/work100")
     public String work100() {
         LOG.info("sent 100 requests");

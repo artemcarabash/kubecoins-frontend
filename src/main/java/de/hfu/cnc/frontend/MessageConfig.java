@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+// Eine Message Queue Definition für AMQP (RabbitMQ)
 @Configuration
 public class MessageConfig {
     @Bean

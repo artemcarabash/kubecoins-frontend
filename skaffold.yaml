@@ -1,3 +1,4 @@
+# Mit Skaffold wird Projekt auf Änderungen überwacht und wird automatisch ein neues Container-Image erstellen
 apiVersion: skaffold/v2beta8
 kind: Config
 metadata:
@@ -9,6 +10,7 @@ build:
         args:
           - -Dmaven.test.skip=true
 deploy:
+  # so wird das "helm upgrade" automatisch ausgeführt
   helm:
     releases:
       - name: frontend-carabasa

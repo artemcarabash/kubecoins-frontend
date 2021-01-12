@@ -1,5 +1,10 @@
+# Configuration für Tool für Continuous Delivery - Helm der lässt Anwendungen nur mit einem Befehl installieren und aktualisieren
 apiVersion: v1
+# Name des Pakets
 name: frontend-carabasa
+# Version von helm-Chart
 version: 0.1.0
+# Version von installierte Anwendung
 appVersion: "0.1"
+# Beschreibung des Pakets
 description: Helm chart for frontend
