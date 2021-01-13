@@ -16,4 +16,4 @@ Simple frontend page with 3 buttons:
 
 Available [here](https://kube.informatik.hs-furtwangen.de/frontend-carabasa/)
 
-Grafana Dashboard [here](https://kube.informatik.hs-furtwangen.de/grafana/d/hOHBWd-Gz/kubecoin-carabasa)
+Grafana Dashboard [WEB](https://kube.informatik.hs-furtwangen.de/grafana/d/uTUcJjaGk/kubecoins-carabasa?orgId=1), [JSON](asset/grafana_dashboard.json)
